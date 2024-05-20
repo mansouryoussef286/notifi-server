@@ -1,12 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { AppConfig } from './Config/App.Config';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly AppConfig: AppConfig) {}
 
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return `Hello this is Notifi-Server version ${this.AppConfig.Config.Version}`;
   }
 }
