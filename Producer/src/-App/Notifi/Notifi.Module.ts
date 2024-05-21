@@ -21,6 +21,16 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
           queue: 'notifications', // Queue name for notifications
         },
       },
+      {
+        name: 'EMAILS_QUEUE',
+        transport: Transport.RMQ,
+        options: {
+          urls: [
+            'amqps://crgqctsx:h-ZATwzCqkk5miNsj_JQaQnXJtqGSksc@hummingbird.rmq.cloudamqp.com/crgqctsx',
+          ],
+          queue: 'emails',
+        },
+      },
     ]),
   ],
   controllers: [NotificationController],

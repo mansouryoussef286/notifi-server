@@ -6,25 +6,19 @@ import { Body, Controller, Inject, Post, UseGuards } from '@nestjs/common';
 export class NotificationController {
   constructor(private readonly rabbitMQService: RabbitMQService) {}
 
-  @Post()
-  async sendEmailNotification(@Body() notification: NotificationDto) {
-    // Ensure connection to RabbitMQ
-    // await this.rabbitMQService.connect();
-
-    // // Create queue if it doesn't exist
-    // await this.rabbitMQService.createQueue('notifications');
-
-    // // Prepare notification message
-    // const message = { notificationType: 'email', notification };
-
-    // // Send notification message to queue
-    // await this.rabbitMQService.channel.sendToQueue(
-    //   'notifications',
-    //   Buffer.from(JSON.stringify(message)),
-    // );
-
+  @Post('notification')
+  async sendNotification(@Body() notification: NotificationDto) {
     this.rabbitMQService.Send(notification);
+    console.log('Notification sent to queue for processing.');
 
-    return { message: 'Email notification sent to queue for processing.' };
+    return { message: 'Notification sent to queue for processing.' };
+  }
+
+  @Post('email')
+  async sendEmail(@Body() notification: NotificationDto) {
+    this.rabbitMQService.SendEmail(notification);
+    console.log('Email sent to queue for processing.');
+
+    return { message: 'Email sent to queue for processing.' };
   }
 }

@@ -13,10 +13,18 @@ export class RabbitMQService {
 
   constructor(
     @Inject('NOTIFICATIONS_QUEUE') private readonly client: ClientProxy,
+    @Inject('EMAILS_QUEUE') private readonly EmailsQueue: ClientProxy,
   ) {}
 
   Send(data) {
     return this.client.send('notifications', data).toPromise();
+  }
+
+  SendEmail(data) {
+    return this.EmailsQueue.emit('emails', data)
+      .toPromise()
+      .then((x) => console.log(x))
+      .catch((x) => console.error(x));
   }
 
   // async connect(): Promise<void> {
