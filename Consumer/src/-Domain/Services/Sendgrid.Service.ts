@@ -1,24 +1,14 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
-import * as amqp from 'amqplib/callback_api';
 import { NotificationDto } from '../DTOs/Notification.Dto';
+import { AppConfig } from '@App/Config/App.Config';
 
 @Injectable()
 export class SendgridService {
-  // private url: string = 'amqp://localhost:5672'; // Adjust URL as needed
-  private url: string =
-    'amqps://crgqctsx:h-ZATwzCqkk5miNsj_JQaQnXJtqGSksc@hummingbird.rmq.cloudamqp.com/crgqctsx'; // Adjust URL as needed
-
-  private conn: amqp.Connection | null = null;
-  channel: amqp.Channel | null = null;
-
-  constructor() {}
+  constructor(private AppConfig: AppConfig) {}
 
   SendMail(data: NotificationDto) {
     const sgMail = require('@sendgrid/mail');
-    sgMail.setApiKey(
-      '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',
-    );
+    sgMail.setApiKey(this.AppConfig.Config.SendgridApiKey);
     const msg = {
       to: 'mansouryoussef286@gmail.com', // Change to your recipient
       from: 'mansouryoussef286public@gmail.com', // Change to your verified sender

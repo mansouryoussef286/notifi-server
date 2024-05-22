@@ -7,6 +7,7 @@ export default registerAs('Config', () => ({
     Host: process.env.SERVER_HOST,
     Port: parseInt(process.env.SERVER_PORT, 10),
   },
+  SendgridApiKey: process.env.SENDGRID_API_KEY,
   Database: {
     Host: process.env.DATABASE_HOSTT,
     Name: process.env.DATABASE_NAME,

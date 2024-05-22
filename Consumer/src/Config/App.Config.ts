@@ -21,6 +21,9 @@ export class Config {
   @Type(() => Server)
   Server: Server;
 
+  @IsString()
+  SendgridApiKey: string;
+
   Database: {
     Host: string;
     Name: string;
