@@ -40,7 +40,6 @@ async function bootstrap() {
     },
   });
   // await app.listenAsync();
-
   // const app = await NestFactory.create(AppModule);
 
   const configService = app.get(ConfigService);
