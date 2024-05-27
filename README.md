@@ -3,3 +3,17 @@ This API provides a centralized service for handling users notification using me
 
 <br>
 <br>
+
+## Code Flow Sequence Diagrams
+<details open>
+  <!-- Dropdown Title -->
+  <summary>
+    <h2>Notification flow:</h2>
+  </summary>
+  <!-- Dropdown Part -->
+  <img style="max-height:500px;" src="/ReadmeAssets/notifi-server.png" alt="notification flow" id="notification-flow">
+</details>
+
+<br>
+<br>
+
